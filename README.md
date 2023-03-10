@@ -9,3 +9,5 @@ composer install
 php artisan key:generate
 
 php artisan migrate
+
+php artisan db:seed (только при первом запуске)
