@@ -114,7 +114,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"user\"\r\n}"
+									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin\"\r\n}"
 								},
 								"url": {
 									"raw": "http://localhost/login",
@@ -164,6 +164,58 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Class",
+			"item": [
+				{
+					"name": "create (admin)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": "localhost",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject_id\" : \"2\",\r\n    \"teacher_id\" : \"46\",\r\n    \"classroom_id\" : \"1\",\r\n    \"timeslot_id\" : \"15\",\r\n    \"date_start\" : \"2023-03-01\",\r\n    \"date_end\" : \"2023-03-31\",\r\n    \"period\" : \"1\",\r\n    \"groups_id\" : [\r\n        1, 2, 3\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/class",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"class"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

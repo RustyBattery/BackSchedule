@@ -12,4 +12,9 @@ class Group extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function classes()
+    {
+        return $this->hasManyThrough(ClassModel::class, ClassGroup::class);
+    }
 }

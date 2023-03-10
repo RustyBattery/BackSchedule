@@ -20,4 +20,9 @@ class ClassModel extends Model
         'date_end',
         'period'
     ];
+
+    public function groups()
+    {
+        return $this->hasManyThrough(Group::class, ClassGroup::class);
+    }
 }
