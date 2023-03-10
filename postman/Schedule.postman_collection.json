@@ -201,7 +201,47 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subject_id\" : \"2\",\r\n    \"teacher_id\" : \"46\",\r\n    \"classroom_id\" : \"1\",\r\n    \"timeslot_id\" : \"15\",\r\n    \"date_start\" : \"2023-03-01\",\r\n    \"date_end\" : \"2023-03-31\",\r\n    \"period\" : \"1\",\r\n    \"groups_id\" : [\r\n        1, 2, 3\r\n    ]\r\n}"
+							"raw": "{\r\n    \"subject_id\" : \"2\",\r\n    \"teacher_id\" : \"46\",\r\n    \"classroom_id\" : \"1\",\r\n    \"timeslot_id\" : \"15\",\r\n    \"date_start\" : \"2023-03-01\",\r\n    \"date_end\" : \"2023-03-31\",\r\n    \"period\" : \"1\",\r\n    \"groups_id\" : [\r\n        4\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/class",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_start\": \"2023-03-06\",\r\n    \"group_id\": 1,\r\n    \"teacher_id\": 46\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost/api/class",

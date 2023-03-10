@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/class', [ClassController::class, 'index']);
+
 Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::group(['middleware' => 'admin'], function (){
         Route::post('/class', [ClassController::class, 'create']);

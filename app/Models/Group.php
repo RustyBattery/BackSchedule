@@ -15,6 +15,6 @@ class Group extends Model
 
     public function classes()
     {
-        return $this->hasManyThrough(ClassModel::class, ClassGroup::class);
+        return $this->belongsToMany(ClassModel::class, 'classes')->withTimestamps();
     }
 }
