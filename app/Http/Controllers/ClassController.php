@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\CustomException;
 use App\Http\Requests\ClassCreateRequest;
+use App\Http\Requests\ClassDeleteRequest;
 use App\Http\Requests\ClassGetRequest;
 use App\Models\ClassGroup;
 use App\Models\ClassModel;
@@ -107,8 +108,18 @@ class ClassController extends Controller
 
     }
 
-    public function delete(ClassModel $class)
+    public function delete(ClassDeleteRequest $request, ClassModel $class)
     {
-
+        $data = $request->validated();
+        if(isset($data['date'])){
+            $class_prev = $class->toArray();
+            $class_prev["date_end"] = Carbon::create($data['date'])->subDay();
+            ClassModel::query()->create($class_prev);
+            $class_next = $class->toArray();
+            $class_next["date_start"] = Carbon::create($data['date'])->addDay();
+            ClassModel::query()->create($class_next);
+        }
+        $class->delete();
+        return response("OK", 200);
     }
 }

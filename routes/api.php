@@ -30,5 +30,6 @@ Route::get('/group', [GroupController::class, 'index']);
 Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::group(['middleware' => 'admin'], function (){
         Route::post('/class', [ClassController::class, 'create']);
+        Route::delete('/class/{class}', [ClassController::class, 'delete']);
     });
 });
