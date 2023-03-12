@@ -241,7 +241,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date_start\": \"2023-03-06\",\r\n    \"group_id\": 1,\r\n    \"teacher_id\": 46\r\n}"
+							"raw": "{\r\n    \"date_start\": \"2023-03-06\",\r\n    \"group_id\": 1,\r\n    \"teacher_id\": 1,\r\n    \"classroom_id\": 1\r\n}"
 						},
 						"url": {
 							"raw": "http://185.46.8.41/api/class",

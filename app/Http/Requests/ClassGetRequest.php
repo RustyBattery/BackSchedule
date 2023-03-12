@@ -27,6 +27,7 @@ class ClassGetRequest extends FormRequest
             'date_start' => 'required|date',
             'group_id' => 'nullable|exists:groups,id',
             'teacher_id' => 'nullable|exists:teachers,id',
+            'classroom_id' => 'nullable|exists:classrooms,id',
         ];
     }
 }

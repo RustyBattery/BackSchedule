@@ -65,7 +65,31 @@ class ClassController extends Controller
             }
             return $classes;
         }
-        throw new CustomException("The group and the teacher are not defined!", 400);
+        if (isset($data['classroom_id'])) {
+            $classes = ClassModel::with(['subject', 'teacher', 'classroom', 'timeslot', 'groups'])
+                ->whereHas('classroom', function ($q) use ($data) {
+                    $q->where('classroom_id', '=', $data['classroom_id']);
+                })
+                ->where(function ($query) use ($data){
+                    $query->where(function ($query) use ($data){//start
+                        $query->whereDate('date_start', '>=', Carbon::create($data['date_start']))
+                            ->whereDate('date_start', '<=', Carbon::create($data['date_start'])->addDay(6));
+                    })
+                        ->orWhere(function ($query) use ($data){//end
+                            $query->whereDate('date_end', '>=', Carbon::create($data['date_start']))
+                                ->whereDate('date_end', '<=', Carbon::create($data['date_start'])->addDay(6));
+                        })
+                        ->orWhere(function ($query) use ($data){//nothing
+                            $query->whereDate('date_start', '<', Carbon::create($data['date_start']))
+                                ->whereDate('date_end', '>', Carbon::create($data['date_start'])->addDay(6));
+                        });
+                })->get();
+            foreach ($classes as $class) {
+                $class->building();
+            }
+            return $classes;
+        }
+        throw new CustomException("The group, the teacher, the classroom are not defined!", 400);
     }
 
     public function create(ClassCreateRequest $request)
