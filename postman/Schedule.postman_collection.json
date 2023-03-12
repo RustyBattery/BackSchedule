@@ -43,10 +43,13 @@
 									"raw": "{\r\n    \"name\":\"Иванов Иван\",\r\n    \"email\": \"heh@mail.ru3\",\r\n    \"password\":\"123321qwerty\",\r\n    \"password_confirmation\":\"123321qwerty\",\r\n    \"group_id\": 1\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost/register",
+									"raw": "http://185.46.8.41/register",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"185",
+										"46",
+										"8",
+										"41"
 									],
 									"path": [
 										"register"
@@ -72,10 +75,13 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost/sanctum/csrf-cookie",
+									"raw": "http://185.46.8.41/sanctum/csrf-cookie",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"185",
+										"46",
+										"8",
+										"41"
 									],
 									"path": [
 										"sanctum",
@@ -117,10 +123,13 @@
 									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost/login",
+									"raw": "http://185.46.8.41/login",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"185",
+										"46",
+										"8",
+										"41"
 									],
 									"path": [
 										"login"
@@ -151,10 +160,13 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost/logout",
+									"raw": "http://185.46.8.41/logout",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"185",
+										"46",
+										"8",
+										"41"
 									],
 									"path": [
 										"logout"
@@ -195,19 +207,22 @@
 							},
 							{
 								"key": "Referer",
-								"value": "localhost",
+								"value": "185.46.8.41",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subject_id\" : \"2\",\r\n    \"teacher_id\" : \"46\",\r\n    \"classroom_id\" : \"1\",\r\n    \"timeslot_id\" : \"15\",\r\n    \"date_start\" : \"2023-03-01\",\r\n    \"date_end\" : \"2023-03-31\",\r\n    \"period\" : \"1\",\r\n    \"groups_id\" : [\r\n        4\r\n    ]\r\n}"
+							"raw": "{\r\n    \"subject_id\" : \"6\",\r\n    \"teacher_id\" : \"6\",\r\n    \"classroom_id\" : \"6\",\r\n    \"timeslot_id\" : \"6\",\r\n    \"date_start\" : \"2023-03-01\",\r\n    \"date_end\" : \"2023-03-31\",\r\n    \"period\" : \"1\",\r\n    \"groups_id\" : [\r\n        2,4\r\n    ]\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost/api/class",
+							"raw": "http://185.46.8.41/api/class",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"185",
+								"46",
+								"8",
+								"41"
 							],
 							"path": [
 								"api",
@@ -259,6 +274,56 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": "185.46.8.41",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://185.46.8.41/api/class/11?date=2023-03-08",
+							"protocol": "http",
+							"host": [
+								"185",
+								"46",
+								"8",
+								"41"
+							],
+							"path": [
+								"api",
+								"class",
+								"11"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2023-03-08"
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -271,10 +336,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost/api/group",
+							"raw": "http://185.46.8.41/api/group",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"185",
+								"46",
+								"8",
+								"41"
 							],
 							"path": [
 								"api",
@@ -295,10 +363,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost/api/subject",
+							"raw": "http://185.46.8.41/api/subject",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"185",
+								"46",
+								"8",
+								"41"
 							],
 							"path": [
 								"api",
@@ -319,10 +390,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost/api/classroom",
+							"raw": "http://185.46.8.41/api/classroom",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"185",
+								"46",
+								"8",
+								"41"
 							],
 							"path": [
 								"api",
@@ -343,10 +417,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost/api/timeslot",
+							"raw": "http://185.46.8.41/api/timeslot",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"185",
+								"46",
+								"8",
+								"41"
 							],
 							"path": [
 								"api",
@@ -367,10 +444,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost/api/teacher",
+							"raw": "http://185.46.8.41/api/teacher",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"185",
+								"46",
+								"8",
+								"41"
 							],
 							"path": [
 								"api",
