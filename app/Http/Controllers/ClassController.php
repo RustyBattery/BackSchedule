@@ -112,6 +112,16 @@ class ClassController extends Controller
     {
         $data = $request->validated();
         if(isset($data['date'])){
+            if(Carbon::create($data['date']) == Carbon::create($class->date_start)){
+                $class->date_start = Carbon::create($class->date_start)->addDay();
+                $class->save();
+                return response("OK", 200);
+            }
+            if(Carbon::create($data['date']) == Carbon::create($class->date_end)){
+                $class->date_end = Carbon::create($class->date_end)->subDay();
+                $class->save();
+                return response("OK", 200);
+            }
             $class_prev = $class->toArray();
             $class_prev["date_end"] = Carbon::create($data['date'])->subDay();
             ClassModel::query()->create($class_prev);
