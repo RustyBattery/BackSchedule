@@ -131,8 +131,7 @@ class ClassController extends Controller
         return response("OK", 200);
     }
 
-    public function delete(ClassDeleteRequest $reque
-st, ClassModel $class)
+    public function delete(ClassDeleteRequest $request, ClassModel $class)
     {
         $data = $request->validated();
         if(isset($data['date'])){
