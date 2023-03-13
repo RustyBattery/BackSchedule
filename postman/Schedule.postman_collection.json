@@ -35,15 +35,16 @@
 									{
 										"key": "X-XSRF-TOKEN",
 										"value": "{{token}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Иванов Иван\",\r\n    \"email\": \"heh@mail.ru3\",\r\n    \"password\":\"123321qwerty\",\r\n    \"password_confirmation\":\"123321qwerty\",\r\n    \"group_id\": 1\r\n}"
+									"raw": "{\r\n    \"name\":\"Иванов Иван\",\r\n    \"email\": \"heh@mail.ru\",\r\n    \"password\":\"123321qwerty\",\r\n    \"group_id\": 1\r\n}"
 								},
 								"url": {
-									"raw": "http://185.46.8.41/register",
+									"raw": "http://185.46.8.41/api/auth/register",
 									"protocol": "http",
 									"host": [
 										"185",
@@ -52,40 +53,9 @@
 										"41"
 									],
 									"path": [
+										"api",
+										"auth",
 										"register"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get csrf",
-							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {
-									"accept": true
-								}
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://185.46.8.41/sanctum/csrf-cookie",
-									"protocol": "http",
-									"host": [
-										"185",
-										"46",
-										"8",
-										"41"
-									],
-									"path": [
-										"sanctum",
-										"csrf-cookie"
 									]
 								}
 							},
@@ -110,7 +80,8 @@
 									{
 										"key": "X-XSRF-TOKEN",
 										"value": "{{token}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									},
 									{
 										"key": "Content-Type",
@@ -123,7 +94,7 @@
 									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin\"\r\n}"
 								},
 								"url": {
-									"raw": "http://185.46.8.41/login",
+									"raw": "http://185.46.8.41/api/auth/login",
 									"protocol": "http",
 									"host": [
 										"185",
@@ -132,6 +103,8 @@
 										"41"
 									],
 									"path": [
+										"api",
+										"auth",
 										"login"
 									]
 								}
@@ -146,12 +119,23 @@
 								}
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4|dXE12483I6li9Lwq9kUYKgTfX9ZTIBo1vvdVgZos",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
 										"key": "X-XSRF-TOKEN",
 										"value": "{{token}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									},
 									{
 										"key": "Accept",
@@ -160,7 +144,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://185.46.8.41/logout",
+									"raw": "http://185.46.8.41/api/auth/logout",
 									"protocol": "http",
 									"host": [
 										"185",
@@ -169,6 +153,8 @@
 										"41"
 									],
 									"path": [
+										"api",
+										"auth",
 										"logout"
 									]
 								}
@@ -188,12 +174,23 @@
 						"disabledSystemHeaders": {}
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|dXE12483I6li9Lwq9kUYKgTfX9ZTIBo1vvdVgZos",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "X-XSRF-TOKEN",
 								"value": "{{token}}",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "Accept",
@@ -208,7 +205,8 @@
 							{
 								"key": "Referer",
 								"value": "185.46.8.41",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -256,7 +254,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date_start\": \"2023-03-06\",\r\n    \"group_id\": 1,\r\n    \"teacher_id\": 1,\r\n    \"classroom_id\": 1\r\n}"
+							"raw": "{\r\n    \"date_start\": \"2023-03-13\",\r\n    \"teacher_id\": 5,\r\n    \"classroom_id\": 1\r\n}"
 						},
 						"url": {
 							"raw": "http://185.46.8.41/api/class",

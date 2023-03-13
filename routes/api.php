@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassroomController;
@@ -29,9 +30,18 @@ Route::get('/subject', [SubjectController::class, 'index']);
 Route::get('/timeslot', [TimeslotController::class, 'index']);
 Route::get('/group', [GroupController::class, 'index']);
 
-//Route::group(['middleware' => 'auth:sanctum'], function (){
+Route::group(['prefix' => 'auth'], function (){
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::group(['middleware' => 'auth:sanctum'], function (){
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
+});
+
+Route::group(['middleware' => 'auth:sanctum'], function (){
+
     Route::put('/user', [UserController::class, 'update']);
-//    Route::group(['middleware' => 'admin'], function (){
+    Route::group(['middleware' => 'admin'], function (){
         Route::group(['prefix' => 'class'], function (){
             Route::post('/', [ClassController::class, 'create']);
             Route::put('/{class}', [ClassController::class, 'update']);
@@ -66,5 +76,5 @@ Route::get('/group', [GroupController::class, 'index']);
             Route::get('/', [UserController::class, 'index']);
             Route::post('/{user}/{teacher}', [UserController::class, 'attach']);
         });
-//    });
-//});
+    });
+});
