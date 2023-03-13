@@ -18,6 +18,16 @@ class ClassController extends Controller
 {
     public function index(ClassGetRequest $request)
     {
+        $days = [
+            'Mo' => 0,
+            'Tu' => 1,
+            'We' => 2,
+            'Th' => 3,
+            'Fr' => 4,
+            'Sa' => 5,
+            'Su' => 6
+    ];
+        $timeslot = $days[0];
         $data = $request->validated();
         if (isset($data['group_id'])) {
             $classes = ClassModel::with(['subject', 'teacher', 'classroom', 'timeslot', 'groups'])
@@ -37,8 +47,12 @@ class ClassController extends Controller
                         $query->whereDate('date_start', '<', Carbon::create($data['date_start']))
                             ->whereDate('date_end', '>', Carbon::create($data['date_start'])->addDay(6));
                     });
+
+
+
                 })->get();
             foreach ($classes as $class) {
+                Carbon::create($data['date_start'])->addDays($days[$timeslot]);
                 $class->building();
             }
             return response($classes, 200);
@@ -63,6 +77,7 @@ class ClassController extends Controller
                         });
                 })->get();
             foreach ($classes as $class) {
+                Carbon::create($data['date_start'])->addDays($days[$timeslot]);
                 $class->building();
             }
             return response($classes, 200);
@@ -87,6 +102,7 @@ class ClassController extends Controller
                         });
                 })->get();
             foreach ($classes as $class) {
+                Carbon::create($data['date_start'])->addDays($days[$timeslot]);
                 $class->building();
             }
             return response($classes, 200);
