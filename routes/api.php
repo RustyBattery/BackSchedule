@@ -29,9 +29,9 @@ Route::get('/subject', [SubjectController::class, 'index']);
 Route::get('/timeslot', [TimeslotController::class, 'index']);
 Route::get('/group', [GroupController::class, 'index']);
 
-Route::group(['middleware' => 'auth:sanctum'], function (){
+//Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::put('/user', [UserController::class, 'update']);
-    Route::group(['middleware' => 'admin'], function (){
+//    Route::group(['middleware' => 'admin'], function (){
         Route::group(['prefix' => 'class'], function (){
             Route::post('/', [ClassController::class, 'create']);
             Route::put('/{class}', [ClassController::class, 'update']);
@@ -66,5 +66,5 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
             Route::get('/', [UserController::class, 'index']);
             Route::post('/{user}/{teacher}', [UserController::class, 'attach']);
         });
-    });
-});
+//    });
+//});
