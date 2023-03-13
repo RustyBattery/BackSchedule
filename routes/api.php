@@ -38,7 +38,7 @@ Route::group(['prefix' => 'auth'], function (){
     });
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function (){
+Route::group(['middleware' => 'auth:sanctum','is_admin'], function (){
 
     Route::put('/user', [UserController::class, 'update']);
     Route::group(['middleware' => 'admin'], function (){
