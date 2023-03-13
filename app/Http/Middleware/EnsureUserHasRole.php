@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class EnsureUserHasRole
 {
@@ -16,9 +17,10 @@ class EnsureUserHasRole
      */
     public function handle($request, Closure $next, $role)
     {
-        if (! $request->user()->hasRole($role)) {
-            return redirect('home');
+        if(!Auth::user()->isAdmin()){
+            return redirect()->route('index');
         }
+
 
         return $next($request);
     }
