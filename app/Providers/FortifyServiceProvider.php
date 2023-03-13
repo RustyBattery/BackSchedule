@@ -16,7 +16,16 @@ class FortifyServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+     * @param Dashboard $dashboard
      */
+    public function boot(Dashboard $dashboard)
+    {
+        $permissions = ItemPermission::group('modules')
+            ->addPermission('user', 'Access to data schedule')
+            ->addPermission('admin', 'Access to the write_schedule');
+
+        $dashboard->registerPermissions($permissions);
+    }
     public function register(): void
     {
         //
