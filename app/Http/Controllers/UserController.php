@@ -5,40 +5,39 @@ namespace App\Http\Controllers;
 use App\Exceptions\CustomException;
 use App\Http\Requests\ClassCreateRequest;
 use App\Http\Requests\ClassGetRequest;
-use App\Http\Requests\TeacherRequest;
+use App\Http\Requests\UserRequest;
+use App\Models\Building;
 use App\Models\ClassGroup;
 use App\Models\ClassModel;
+use App\Models\Classroom;
 use App\Models\Teacher;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class UserController extends Controller
 {
-    public function index()
-    {
-        $teachers = Teacher::all();
-        return response($teachers, 200);
+    public function index(){
+        $users = User::with(['group', 'teacher'])->get();
+        return response($users, 200);
     }
 
-    public function create(TeacherRequest $request)
+    public function update(UserRequest $request)
     {
+        $user = auth()->user();
         $data = $request->validated();
-        Teacher::query()->create($data);
+        $user->update($data);
         return response("OK", 200);
     }
 
-    public function update(TeacherRequest $request, Teacher $teacher)
+    public function attach(User $user, Teacher $teacher)
     {
-        $data = $request->validated();
-        $teacher->update($data);
+        $user->teacher_id = $teacher->id;
+        $user->save();
         return response("OK", 200);
     }
 
-    public function delete(Teacher $teacher)
-    {
-        $teacher->delete();
-        return response("OK", 200);
-    }
 }

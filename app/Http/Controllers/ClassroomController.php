@@ -23,18 +23,23 @@ class ClassroomController extends Controller
         return response($buildings, 200);
     }
 
-    public function create()
+    public function create(ClassroomController $request)
     {
-
+        $data = $request->validated();
+        Classroom::query()->create($data);
+        return response("OK", 200);
     }
 
-    public function update()
+    public function update(ClassroomController $request, Classroom $classroom)
     {
-
+        $data = $request->validated();
+        $classroom->update($data);
+        return response("OK", 200);
     }
 
-    public function delete()
+    public function delete(Classroom $classroom)
     {
-
+        $classroom->delete();
+        return response("OK", 200);
     }
 }

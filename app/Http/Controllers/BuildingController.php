@@ -3,42 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\CustomException;
+use App\Http\Requests\BuildingRequest;
 use App\Http\Requests\ClassCreateRequest;
 use App\Http\Requests\ClassGetRequest;
-use App\Http\Requests\GroupRequest;
+use App\Models\Building;
 use App\Models\ClassGroup;
 use App\Models\ClassModel;
-use App\Models\Group;
+use App\Models\Classroom;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class BuildingController extends Controller
 {
-    public function index()
-    {
-        $groups = Group::all();
-        return response($groups, 200);
-    }
 
-    public function create(GroupRequest $request)
+    public function create(BuildingRequest $request)
     {
         $data = $request->validated();
-        Group::query()->create($data);
+        Building::query()->create($data);
         return response("OK", 200);
     }
 
-    public function update(GroupRequest $request, Group $group)
+    public function update(BuildingRequest $request, Building $building)
     {
         $data = $request->validated();
-        $group->update($data);
+        $building->update($data);
         return response("OK", 200);
     }
 
-    public function delete(Group $group)
+    public function delete(Building $building)
     {
-        $group->delete();
+        $building->delete();
         return response("OK", 200);
     }
 }

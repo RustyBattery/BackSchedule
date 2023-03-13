@@ -6,6 +6,7 @@ use App\Exceptions\CustomException;
 use App\Http\Requests\ClassCreateRequest;
 use App\Http\Requests\ClassDeleteRequest;
 use App\Http\Requests\ClassGetRequest;
+use App\Http\Requests\ClassUpdateRequest;
 use App\Models\ClassGroup;
 use App\Models\ClassModel;
 use Carbon\Carbon;
@@ -40,7 +41,7 @@ class ClassController extends Controller
             foreach ($classes as $class) {
                 $class->building();
             }
-            return $classes;
+            return response($classes, 200);
         }
         if (isset($data["teacher_id"])) {
             $classes = ClassModel::with(['subject', 'teacher', 'classroom', 'timeslot', 'groups'])
@@ -64,7 +65,7 @@ class ClassController extends Controller
             foreach ($classes as $class) {
                 $class->building();
             }
-            return $classes;
+            return response($classes, 200);
         }
         if (isset($data['classroom_id'])) {
             $classes = ClassModel::with(['subject', 'teacher', 'classroom', 'timeslot', 'groups'])
@@ -88,7 +89,7 @@ class ClassController extends Controller
             foreach ($classes as $class) {
                 $class->building();
             }
-            return $classes;
+            return response($classes, 200);
         }
         throw new CustomException("The group, the teacher, the classroom are not defined!", 400);
     }
@@ -103,12 +104,15 @@ class ClassController extends Controller
         return response("OK", 200);
     }
 
-    public function update()
+    public function update(ClassUpdateRequest $request, ClassModel $class)
     {
-
+        $data = $request->validated();
+        $class->update($data);
+        return response("OK", 200);
     }
 
-    public function delete(ClassDeleteRequest $request, ClassModel $class)
+    public function delete(ClassDeleteRequest $reque
+st, ClassModel $class)
     {
         $data = $request->validated();
         if(isset($data['date'])){
