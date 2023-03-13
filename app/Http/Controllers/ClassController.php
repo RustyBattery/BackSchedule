@@ -26,8 +26,8 @@ class ClassController extends Controller
             'Fr' => 4,
             'Sa' => 5,
             'Su' => 6
-    ];
-        $timeslot = $days[0];
+        ];
+
         $data = $request->validated();
         if (isset($data['group_id'])) {
             $classes = ClassModel::with(['subject', 'teacher', 'classroom', 'timeslot', 'groups'])
@@ -52,8 +52,9 @@ class ClassController extends Controller
 
                 })->get();
             foreach ($classes as $class) {
-                Carbon::create($data['date_start'])->addDays($days[$timeslot]);
                 $class->building();
+                $timeslot = $class->timeslot->day;
+                $class->date = Carbon::create($data['date_start'])->addDays($days[$timeslot]);
             }
             return response($classes, 200);
         }
@@ -77,8 +78,10 @@ class ClassController extends Controller
                         });
                 })->get();
             foreach ($classes as $class) {
-                Carbon::create($data['date_start'])->addDays($days[$timeslot]);
                 $class->building();
+                $timeslot = $class->timeslot->day;
+                $class->date = Carbon::create($data['date_start'])->addDays($days[$timeslot]);
+
             }
             return response($classes, 200);
         }
@@ -102,8 +105,9 @@ class ClassController extends Controller
                         });
                 })->get();
             foreach ($classes as $class) {
-                Carbon::create($data['date_start'])->addDays($days[$timeslot]);
                 $class->building();
+                $timeslot = $class->timeslot->day;
+                $class->date = Carbon::create($data['date_start'])->addDays($days[$timeslot]);
             }
             return response($classes, 200);
         }
